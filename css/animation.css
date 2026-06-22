@@ -30,6 +30,17 @@
 /* 3. 互動實驗：迴紋針位置與吸力條由 JS 控制，僅加過場 */
 #demo-clip { transition: x 0.25s ease; }
 #demo-force { transition: width 0.25s ease, fill 0.25s ease; }
+/* 夠近時「啪」地被吸附過去的小晃動 */
+#demo-clip.snapped { animation: clip-snap 0.3s ease; }
+@keyframes clip-snap {
+  0%   { transform: translateX(10px); }
+  60%  { transform: translateX(-3px); }
+  100% { transform: translateX(0); }
+}
+/* 實驗二：翻轉右磁鐵時，右磁鐵相吸靠近 / 相斥推開 */
+#exp2-right { transition: transform 0.5s ease; }
+#exp2-scene.attract #exp2-right { transform: translateX(-14px); }
+#exp2-scene.repel  #exp2-right { transform: translateX(16px); }
 
 /* 4. 動畫模擬：鐵釘磁化三階段（用 data-stage 切換） */
 .domain line { stroke: #7a8794; stroke-width: 3; transform-box: fill-box; transform-origin: center; transition: transform 0.6s ease, stroke 0.6s ease; }
@@ -85,6 +96,7 @@
 @media (prefers-reduced-motion: reduce) {
   .panel.is-active,
   .clip-fly, .flux path, .rub-mag,
+  #demo-clip, #demo-force, #demo-clip.snapped, #exp2-right,
   .domain line, .apply-card .anim { animation: none !important; transition: none !important; }
   /* 關閉動畫時，確保預設藏起來的元素仍然看得見 */
   .apply-card[data-anim="rotate"] .anim { transform: none; }

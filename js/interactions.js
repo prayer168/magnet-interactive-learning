@@ -1,42 +1,155 @@
 // 互動實驗、動畫模擬、生活應用卡片與自學資源的互動邏輯。
 
 export function initInteractions() {
-  // 3. 互動實驗：滑桿控制磁鐵與迴紋針的距離，即時反映吸力強弱。
+  // 3-1. 實驗一：滑桿控制磁鐵與迴紋針的距離；夠近時迴紋針會「啪」地被吸過去。
   const slider = document.getElementById("demo-slider");
   const clip = document.getElementById("demo-clip");
   const force = document.getElementById("demo-force");
   const readout = document.getElementById("demo-readout");
   const strength = document.getElementById("demo-strength");
   if (slider && clip && force && readout && strength) {
+    const MAGNET_EDGE = 58;      // 磁鐵 S 極右緣 x
+    const ATTACH_X = 56;         // 被吸住時迴紋針貼住磁鐵的位置
+    const FAR_X = 168;           // 最遠時迴紋針的位置
+    const SNAP_POWER = 55;       // 吸力達此值就直接被吸過去
     const update = () => {
-      const v = Number(slider.value);          // 0=最近、100=最遠
-      // 迴紋針位置：近時靠向磁鐵（被吸過去），遠時在右側
-      const baseX = 58;                         // 磁鐵右緣附近
-      const farX = 150;
-      const clipX = baseX + (farX - baseX) * (v / 100);
-      clip.setAttribute("x", String(clipX));
-      // 吸力與距離成反比（簡化示意）：近強遠弱
+      const v = Number(slider.value);                   // 0=最近、100=最遠
       const power = Math.round(100 * (1 - v / 100) ** 2); // 0~100
-      const barW = Math.max(2, power);          // 強度條寬度
-      force.setAttribute("width", String(barW));
-      // 文字回饋
-      readout.textContent = v < 33 ? "近" : v < 67 ? "中" : "遠";
-      if (power >= 60) {
-        strength.textContent = "很強，會被吸過去";
+      if (power >= SNAP_POWER) {
+        // 啪！直接吸附到磁鐵上
+        clip.setAttribute("x", String(ATTACH_X));
+        clip.classList.add("snapped");
+        force.setAttribute("width", "100");
         force.setAttribute("fill", "#e63946");
-      } else if (power >= 25) {
-        strength.textContent = "中等";
-        force.setAttribute("fill", "#f4a259");
-      } else if (power > 5) {
-        strength.textContent = "很弱";
-        force.setAttribute("fill", "#9aa7b4");
+        readout.textContent = "很近";
+        strength.textContent = "啪！被吸過去了";
       } else {
-        strength.textContent = "吸不到了";
-        force.setAttribute("fill", "#cfd6dd");
+        clip.classList.remove("snapped");
+        const nearX = MAGNET_EDGE + 14;                 // 還沒吸住時的最近位置
+        const clipX = nearX + (FAR_X - nearX) * (v / 100);
+        clip.setAttribute("x", String(clipX));
+        force.setAttribute("width", String(Math.max(2, power)));
+        readout.textContent = v < 67 ? "中" : "遠";
+        if (power >= 25) {
+          strength.textContent = "中等，快被吸住了";
+          force.setAttribute("fill", "#f4a259");
+        } else if (power > 5) {
+          strength.textContent = "很弱";
+          force.setAttribute("fill", "#9aa7b4");
+        } else {
+          strength.textContent = "吸不到了";
+          force.setAttribute("fill", "#cfd6dd");
+        }
       }
     };
     slider.addEventListener("input", update);
     update();
+  }
+
+  // 3-2. 實驗二：同極相斥、異極相吸（翻轉右邊磁鐵）。
+  const e2scene = document.getElementById("exp2-scene");
+  const e2flip = document.getElementById("exp2-flip");
+  if (e2scene && e2flip) {
+    const lp = document.getElementById("exp2-lp");
+    const rp = document.getElementById("exp2-rp");
+    const ll = document.getElementById("exp2-ll");
+    const rl = document.getElementById("exp2-rl");
+    const cap = document.getElementById("exp2-cap");
+    const RED = "#e63946", BLUE = "#1d6fb8";
+    let attract = true;          // true=異極相吸、false=同極相斥
+    const apply = () => {
+      // 左磁鐵面向右側的是 S 極。右磁鐵面向左側的極：相吸時為 N、相斥時為 S。
+      lp.setAttribute("fill", attract ? RED : BLUE);
+      rp.setAttribute("fill", attract ? BLUE : RED);
+      ll.textContent = attract ? "N" : "S";
+      rl.textContent = attract ? "S" : "N";
+      e2scene.classList.toggle("attract", attract);
+      e2scene.classList.toggle("repel", !attract);
+      cap.textContent = attract
+        ? "異極相吸：S 和 N 互相靠近、吸在一起。"
+        : "同極相斥：S 和 S 互相推開。";
+    };
+    e2flip.addEventListener("click", () => { attract = !attract; apply(); });
+    apply();
+  }
+
+  // 3-3. 實驗三：哪些東西會被磁鐵吸住（點按測試、分類）。
+  const e3 = document.getElementById("exp3-root");
+  if (e3) {
+    const items = [
+      { name: "迴紋針", icon: "📎", mag: true },
+      { name: "鐵釘", icon: "🔩", mag: true },
+      { name: "剪刀", icon: "✂️", mag: true },
+      { name: "塑膠尺", icon: "📏", mag: false },
+      { name: "鉛筆", icon: "✏️", mag: false },
+      { name: "玻璃杯", icon: "🥛", mag: false },
+    ];
+    const grid = document.createElement("div");
+    grid.className = "obj-row";
+    const sum = document.createElement("p");
+    sum.className = "exp-note";
+    let tested = 0;
+    items.forEach((it) => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "obj";
+      b.innerHTML =
+        `<span class="obj-icon">${it.icon}</span>` +
+        `<span class="obj-name">${it.name}</span>` +
+        `<span class="obj-result">點我測試</span>`;
+      b.addEventListener("click", () => {
+        if (b.classList.contains("tested")) return;
+        b.classList.add("tested", it.mag ? "is-yes" : "is-no");
+        b.querySelector(".obj-result").textContent = it.mag ? "✅ 會被吸住" : "❌ 不會被吸";
+        tested += 1;
+        if (tested === items.length) {
+          sum.textContent = "發現：只有「鐵」做的東西會被磁鐵吸住，塑膠、木頭、玻璃都不會。";
+        }
+      });
+      grid.appendChild(b);
+    });
+    e3.appendChild(grid);
+    e3.appendChild(sum);
+  }
+
+  // 3-4. 實驗四：磁鐵哪裡吸力最強（點不同位置看能黏幾根迴紋針）。
+  const e4 = document.getElementById("exp4-root");
+  if (e4) {
+    e4.innerHTML =
+      '<svg viewBox="0 0 200 60" class="exp4-mag" role="img" aria-label="條形磁鐵">' +
+      '<rect x="20" y="20" width="80" height="24" rx="3" fill="#e63946"/>' +
+      '<rect x="100" y="20" width="80" height="24" rx="3" fill="#1d6fb8"/>' +
+      '<text x="60" y="37" font-size="13" fill="#fff" text-anchor="middle" font-weight="bold">N</text>' +
+      '<text x="140" y="37" font-size="13" fill="#fff" text-anchor="middle" font-weight="bold">S</text>' +
+      "</svg>";
+    const row = document.createElement("div");
+    row.className = "zone-row";
+    const out = document.createElement("p");
+    out.className = "exp-note";
+    const zones = [
+      { k: "左磁極（N）", clips: 5, strong: true },
+      { k: "正中間", clips: 0, strong: false },
+      { k: "右磁極（S）", clips: 5, strong: true },
+    ];
+    zones.forEach((z) => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "btn zone-btn";
+      b.textContent = z.k;
+      b.addEventListener("click", () => {
+        row.querySelectorAll(".zone-btn").forEach((x) => x.classList.remove("is-active"));
+        b.classList.add("is-active");
+        const tally = z.clips ? "📎".repeat(z.clips) : "（一根也黏不住）";
+        out.innerHTML =
+          `<span class="clip-tally">${tally}</span><br>` +
+          (z.strong
+            ? "磁極（兩端）的吸力最強，黏住好多迴紋針！"
+            : "磁鐵中間幾乎沒有吸力，迴紋針黏不住。");
+      });
+      row.appendChild(b);
+    });
+    e4.appendChild(row);
+    e4.appendChild(out);
   }
 
   // 4. 動畫模擬：鐵釘磁化三階段，不讓所有元素同時動。

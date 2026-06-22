@@ -74,6 +74,62 @@ main { max-width: var(--max-width); margin: 1.2rem auto; padding: 0 1rem; }
 .control { display: block; margin-top: 0.8rem; color: var(--color-muted); }
 .control input[type="range"] { width: 100%; max-width: 360px; display: block; }
 
+/* 互動實驗：每個實驗一張卡 */
+.experiment {
+  background: var(--color-surface);
+  border: 1px solid #e3ece5;
+  border-radius: var(--radius);
+  padding: 1rem 1.2rem;
+  box-shadow: var(--shadow);
+  margin-bottom: 1.2rem;
+}
+.experiment h3 { margin: 0 0 0.3rem; color: var(--color-primary-dark); font-size: 1.05rem; }
+.experiment > p { color: var(--color-muted); margin: 0.2rem 0 0.8rem; }
+.exp-note {
+  margin: 0.8rem 0 0;
+  padding: 0.6rem 0.8rem;
+  background: var(--color-bg);
+  border-radius: 8px;
+  color: var(--color-text, #333);
+  font-weight: 600;
+}
+.clip-tally { font-size: 1.3rem; letter-spacing: 2px; }
+
+/* 實驗三：物品測試格 */
+.obj-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+  gap: 0.6rem;
+}
+.obj {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  border: 2px solid #d8e0e8;
+  background: #fff;
+  border-radius: 10px;
+  padding: 0.6rem 0.3rem;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+.obj:hover { border-color: var(--color-accent); }
+.obj-icon { font-size: 1.8rem; line-height: 1; }
+.obj-name { font-size: 0.85rem; font-weight: 600; }
+.obj-result { font-size: 0.72rem; color: var(--color-muted); }
+.obj.tested { cursor: default; }
+.obj.is-yes { border-color: #2e9e5b; background: #eafaf0; }
+.obj.is-yes .obj-result { color: #2e9e5b; }
+.obj.is-no { border-color: #c5ccd3; background: #f3f5f7; }
+.obj.is-no .obj-result { color: #8a97a3; }
+
+/* 實驗四：磁鐵分區 */
+.exp4-mag { width: 100%; max-width: 300px; height: auto; display: block; margin: 0 auto 0.6rem; }
+.zone-row { display: flex; gap: 0.6rem; flex-wrap: wrap; justify-content: center; }
+.zone-btn { background: var(--color-accent); }
+.zone-btn:hover { background: #155a96; }
+.zone-btn.is-active { background: var(--color-primary); box-shadow: 0 0 0 3px rgba(230,57,70,0.25); }
+
 .card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));

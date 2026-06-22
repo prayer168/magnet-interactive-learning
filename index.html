@@ -9,6 +9,18 @@
   <link rel="stylesheet" href="./css/responsive.css" />
 </head>
 <body>
+  <!-- 共用迴紋針圖形（雙圈鐵線造型），各處以 <use> 重複使用 -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="paperclip" viewBox="0 0 30 16">
+        <g fill="none" stroke="#8a97a3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="1.6" y="2" width="26.8" height="12" rx="6" />
+          <rect x="4.6" y="4.6" width="14.8" height="6.8" rx="3.4" />
+        </g>
+      </symbol>
+    </defs>
+  </svg>
+
   <header class="site-header">
     <h1>磁鐵的祕密</h1>
     <p class="subtitle">國小三年級 · 自然科學 · 40分鐘</p>
@@ -38,7 +50,7 @@
             <text x="65" y="64" font-size="12" fill="#fff" text-anchor="middle" font-weight="bold">S</text>
             <!-- 被吸引而靠近的迴紋針 -->
             <g class="clip-fly">
-              <rect x="96" y="54" width="14" height="12" rx="6" fill="none" stroke="#7a8794" stroke-width="3" />
+              <use href="#paperclip" x="88" y="52" width="26" height="14" />
             </g>
           </svg>
           <figcaption>磁鐵能隔空吸住迴紋針</figcaption>
@@ -82,33 +94,76 @@
       </div>
     </section>
 
-    <!-- 3. 互動實驗：距離與磁力（滑桿驅動） -->
+    <!-- 3. 互動實驗：四個動手玩的小實驗 -->
     <section class="panel" id="interact" role="tabpanel">
-      <h2>互動實驗：磁力會隨距離改變嗎？</h2>
-      <p>拖動滑桿改變磁鐵和迴紋針的距離，看看迴紋針會不會被吸過去、吸力有多強。</p>
-      <figure class="scene scene-wide">
-        <svg viewBox="0 0 200 110" role="img" aria-label="磁鐵與迴紋針的距離">
-          <!-- 桌面 -->
-          <rect x="0" y="78" width="200" height="10" fill="#d7c3a5" />
-          <!-- 條形磁鐵 -->
-          <rect x="14" y="52" width="22" height="22" rx="3" fill="#e63946" />
-          <rect x="36" y="52" width="22" height="22" rx="3" fill="#1d6fb8" />
-          <text x="25" y="67" font-size="9" fill="#fff" text-anchor="middle" font-weight="bold">N</text>
-          <text x="47" y="67" font-size="9" fill="#fff" text-anchor="middle" font-weight="bold">S</text>
-          <!-- 迴紋針（位置與吸力由 JS 控制） -->
-          <rect id="demo-clip" x="150" y="56" width="16" height="14" rx="7" fill="none" stroke="#7a8794" stroke-width="3" />
-          <!-- 吸力強度條 -->
-          <rect x="92" y="92" width="100" height="8" rx="4" fill="#e6ebf1" />
-          <rect id="demo-force" x="92" y="92" width="50" height="8" rx="4" fill="#e63946" />
-        </svg>
-        <figcaption>距離：<span id="demo-readout">中</span>　吸力：<span id="demo-strength">中等</span></figcaption>
-      </figure>
-      <label class="control">
-        磁鐵與迴紋針的距離（左＝近、右＝遠）
-        <input id="demo-slider" type="range" min="0" max="100" value="40" />
-      </label>
-      <p class="eyebrow" style="margin-top:1rem">發現</p>
-      <p>距離越近，吸力越強，迴紋針會被吸過去；距離越遠，吸力越弱，最後就吸不到了。</p>
+      <h2>互動實驗</h2>
+      <p>動手玩玩看磁鐵的各種特性，一邊操作一邊觀察會發生什麼事。</p>
+
+      <!-- 實驗一：距離與磁力 -->
+      <article class="experiment">
+        <h3>實驗一：磁力會隨距離改變嗎？</h3>
+        <p>拖動滑桿改變磁鐵和迴紋針的距離，看看吸力有多強，靠得夠近時迴紋針會「啪」地被吸過去。</p>
+        <figure class="scene scene-wide">
+          <svg viewBox="0 0 200 110" role="img" aria-label="磁鐵與迴紋針的距離">
+            <!-- 桌面 -->
+            <rect x="0" y="78" width="200" height="10" fill="#d7c3a5" />
+            <!-- 條形磁鐵 -->
+            <rect x="14" y="52" width="22" height="22" rx="3" fill="#e63946" />
+            <rect x="36" y="52" width="22" height="22" rx="3" fill="#1d6fb8" />
+            <text x="25" y="67" font-size="9" fill="#fff" text-anchor="middle" font-weight="bold">N</text>
+            <text x="47" y="67" font-size="9" fill="#fff" text-anchor="middle" font-weight="bold">S</text>
+            <!-- 迴紋針（位置與吸力由 JS 控制） -->
+            <use id="demo-clip" href="#paperclip" x="150" y="53" width="26" height="14" />
+            <!-- 吸力強度條 -->
+            <rect x="92" y="92" width="100" height="8" rx="4" fill="#e6ebf1" />
+            <rect id="demo-force" x="92" y="92" width="50" height="8" rx="4" fill="#e63946" />
+          </svg>
+          <figcaption>距離：<span id="demo-readout">中</span>　吸力：<span id="demo-strength">中等</span></figcaption>
+        </figure>
+        <label class="control">
+          磁鐵與迴紋針的距離（左＝近、右＝遠）
+          <input id="demo-slider" type="range" min="0" max="100" value="40" />
+        </label>
+        <p class="exp-note">距離越近，吸力越強；近到一定程度，迴紋針就會直接被吸過去黏住。</p>
+      </article>
+
+      <!-- 實驗二：同極相斥、異極相吸 -->
+      <article class="experiment">
+        <h3>實驗二：同極相斥、異極相吸</h3>
+        <p>按按鈕翻轉右邊的磁鐵，看看兩塊磁鐵會互相吸住，還是互相推開。</p>
+        <figure class="scene scene-wide" id="exp2-scene">
+          <svg viewBox="0 0 200 90" role="img" aria-label="兩塊磁鐵的相吸與相斥">
+            <!-- 左磁鐵（固定） -->
+            <rect x="24" y="32" width="24" height="24" rx="3" fill="#e63946" />
+            <rect x="48" y="32" width="24" height="24" rx="3" fill="#1d6fb8" />
+            <text x="36" y="49" font-size="11" fill="#fff" text-anchor="middle" font-weight="bold">N</text>
+            <text x="60" y="49" font-size="11" fill="#fff" text-anchor="middle" font-weight="bold">S</text>
+            <!-- 右磁鐵（可翻轉、會滑動） -->
+            <g id="exp2-right">
+              <rect id="exp2-lp" x="120" y="32" width="24" height="24" rx="3" fill="#e63946" />
+              <rect id="exp2-rp" x="144" y="32" width="24" height="24" rx="3" fill="#1d6fb8" />
+              <text id="exp2-ll" x="132" y="49" font-size="11" fill="#fff" text-anchor="middle" font-weight="bold">N</text>
+              <text id="exp2-rl" x="156" y="49" font-size="11" fill="#fff" text-anchor="middle" font-weight="bold">S</text>
+            </g>
+          </svg>
+          <figcaption id="exp2-cap">異極相吸：N 和 S 互相靠近、吸在一起。</figcaption>
+        </figure>
+        <button id="exp2-flip" class="btn" type="button">翻轉右邊磁鐵</button>
+      </article>
+
+      <!-- 實驗三：哪些東西會被吸 -->
+      <article class="experiment">
+        <h3>實驗三：哪些東西會被磁鐵吸住？</h3>
+        <p>點點看每個物品，先猜一猜，再看看磁鐵會不會吸住它。</p>
+        <div id="exp3-root"></div>
+      </article>
+
+      <!-- 實驗四：磁鐵哪裡最強 -->
+      <article class="experiment">
+        <h3>實驗四：磁鐵哪裡的吸力最強？</h3>
+        <p>點磁鐵的不同位置，看看那裡能黏住幾根迴紋針。</p>
+        <div id="exp4-root"></div>
+      </article>
     </section>
 
     <!-- 4. 動畫模擬：鐵釘被磁化的過程（分階段） -->
@@ -135,7 +190,7 @@
           </g>
           <!-- 被吸住的迴紋針（stage 2 出現） -->
           <g class="clip-result">
-            <rect x="184" y="54" width="12" height="11" rx="5" fill="none" stroke="#7a8794" stroke-width="3" />
+            <use href="#paperclip" x="176" y="53" width="22" height="12" />
           </g>
         </svg>
         <figcaption id="sim-caption">階段 1：普通鐵釘，裡面的小磁針方向亂亂的，不能吸東西</figcaption>
