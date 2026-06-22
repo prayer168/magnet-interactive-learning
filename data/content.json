@@ -14,6 +14,7 @@
           "title": "指南針",
           "caption": "指南針裡是一根會轉的小磁針，它會自動指向南北方，幫我們找方向。",
           "action": "點我看磁針轉向",
+          "anim": "rotate",
           "svg": "<svg viewBox='0 0 120 60'><circle cx='60' cy='30' r='24' fill='none' stroke='#9aa7b4' stroke-width='3'/><g class='anim'><polygon points='60,10 64,30 60,34 56,30' fill='#e63946'/><polygon points='60,50 64,30 60,26 56,30' fill='#1d6fb8'/></g><text x='60' y='8' font-size='7' text-anchor='middle' fill='#5d6770'>N</text></svg>",
           "source": ""
         },
@@ -21,20 +22,23 @@
           "title": "冰箱磁貼",
           "caption": "磁鐵能吸住冰箱的鐵門，所以可以用磁貼把紙條、照片貼上去。",
           "action": "點我把磁貼吸上去",
-          "svg": "<svg viewBox='0 0 120 60'><rect x='80' y='4' width='34' height='52' rx='3' fill='#e9edf2' stroke='#b9c3cd' stroke-width='2'/><rect class='anim' x='10' y='22' width='22' height='16' rx='3' fill='#e63946'/></svg>",
+          "anim": "stick-right",
+          "svg": "<svg viewBox='0 0 120 60'><rect x='80' y='4' width='34' height='52' rx='3' fill='#e9edf2' stroke='#b9c3cd' stroke-width='2'/><line x1='84' y1='8' x2='84' y2='52' stroke='#cfd8e0' stroke-width='2'/><rect class='anim' x='8' y='22' width='22' height='16' rx='3' fill='#e63946'/></svg>",
           "source": ""
         },
         {
           "title": "磁鐵門扣",
           "caption": "櫃子門上的小磁扣，靠磁力把門吸住，輕輕一拉又能打開。",
           "action": "點我關上門",
-          "svg": "<svg viewBox='0 0 120 60'><rect x='58' y='6' width='10' height='48' fill='#8d6e63'/><rect class='anim' x='14' y='6' width='40' height='48' rx='3' fill='#c9a36b'/><rect x='50' y='26' width='6' height='8' fill='#1d6fb8'/></svg>",
+          "anim": "door",
+          "svg": "<svg viewBox='0 0 120 60'><rect x='88' y='4' width='8' height='52' fill='#8d6e63'/><rect x='82' y='25' width='6' height='10' rx='1' fill='#1d6fb8'/><g class='anim'><rect x='8' y='6' width='56' height='48' rx='3' fill='#c9a36b'/><rect x='64' y='26' width='6' height='8' fill='#90a4ae'/></g></svg>",
           "source": ""
         },
         {
           "title": "磁浮列車",
           "caption": "用同極相斥的磁力，把列車「浮」起來，幾乎沒有摩擦，可以跑得超快。",
           "action": "點我讓列車浮起來",
+          "anim": "lift",
           "svg": "<svg viewBox='0 0 120 60'><rect x='6' y='50' width='108' height='6' fill='#9aa7b4'/><rect class='anim' x='20' y='30' width='80' height='18' rx='9' fill='#1d6fb8'/></svg>",
           "source": ""
         },
@@ -42,6 +46,7 @@
           "title": "磁鐵釣魚玩具",
           "caption": "釣竿前端是磁鐵，小魚身上有鐵片，磁力一吸就把魚「釣」起來。",
           "action": "點我釣起小魚",
+          "anim": "lift",
           "svg": "<svg viewBox='0 0 120 60'><line x1='30' y1='6' x2='60' y2='28' stroke='#8d6e63' stroke-width='2'/><rect x='56' y='26' width='10' height='6' fill='#e63946'/><g class='anim'><ellipse cx='60' cy='44' rx='12' ry='7' fill='#f4a259'/><polygon points='72,44 82,38 82,50' fill='#f4a259'/></g></svg>",
           "source": ""
         },
@@ -49,6 +54,7 @@
           "title": "喇叭（揚聲器）",
           "caption": "喇叭裡有磁鐵和線圈，靠磁力推動紙盆振動，就發出聲音了。",
           "action": "點我發出聲音",
+          "anim": "wave",
           "svg": "<svg viewBox='0 0 120 60'><rect x='10' y='18' width='16' height='24' fill='#1d6fb8'/><polygon points='26,14 50,4 50,56 26,46' fill='#c9a36b'/><g class='anim'><path d='M62,18 Q72,30 62,42' fill='none' stroke='#e63946' stroke-width='3'/><path d='M74,12 Q90,30 74,48' fill='none' stroke='#e63946' stroke-width='3'/></g></svg>",
           "source": ""
         },
@@ -56,6 +62,7 @@
           "title": "磁性白板與磁釦",
           "caption": "白板是鐵做的，用磁釦就能把海報、作品吸在上面，不用膠帶。",
           "action": "點我吸上磁釦",
+          "anim": "stick-on",
           "svg": "<svg viewBox='0 0 120 60'><rect x='6' y='6' width='108' height='48' rx='3' fill='#f4f7fb' stroke='#b9c3cd' stroke-width='2'/><circle class='anim' cx='30' cy='30' r='8' fill='#e63946'/></svg>",
           "source": ""
         },
@@ -63,6 +70,7 @@
           "title": "回收場的大磁鐵",
           "caption": "回收場用超大電磁鐵吸起鐵罐和廢鐵，把鐵和其他垃圾分開來。",
           "action": "點我吸起鐵罐",
+          "anim": "lift",
           "svg": "<svg viewBox='0 0 120 60'><rect x='44' y='4' width='32' height='12' rx='2' fill='#444'/><rect x='50' y='16' width='20' height='8' fill='#e63946'/><g class='anim'><rect x='52' y='34' width='10' height='14' rx='2' fill='#9aa7b4'/><rect x='66' y='36' width='10' height='14' rx='2' fill='#9aa7b4'/></g></svg>",
           "source": ""
         }

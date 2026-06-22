@@ -70,6 +70,7 @@ export function renderApply(content) {
   cases.forEach((c) => {
     const card = document.createElement("article");
     card.className = "apply-card";
+    if (c.anim) card.dataset.anim = c.anim;   // 每張卡用對應的動作方向
     card.innerHTML = `
       ${c.svg || ""}
       <h3>${c.title || ""}</h3>

@@ -53,12 +53,41 @@
 .clip-result { opacity: 0; transition: opacity 0.5s ease 0.3s; }
 #sim-scene[data-stage="2"] .clip-result { opacity: 1; }
 
-/* 5. 生活應用卡片：點按切換 before/after */
+/* 5. 生活應用卡片：點按切換 before/after，每種情境用「物理上正確」的動作方向 */
 .apply-card .anim { transition: transform 0.6s ease-in-out, opacity 0.6s ease; transform-box: fill-box; transform-origin: center; }
-.apply-card.is-on .anim { transform: translateX(-22px); }
+
+/* 指南針：磁針「轉向」指北（旋轉，而非平移） */
+.apply-card[data-anim="rotate"] .anim { transform: rotate(135deg); }
+.apply-card[data-anim="rotate"].is-on .anim { transform: rotate(0deg); }
+
+/* 冰箱磁貼：磁貼向右被吸到冰箱門上 */
+.apply-card[data-anim="stick-right"].is-on .anim { transform: translateX(52px); }
+
+/* 磁鐵門扣：門板向右關上、靠住門框上的磁扣 */
+.apply-card[data-anim="door"].is-on .anim { transform: translateX(16px); }
+
+/* 磁浮列車／釣魚／回收場大磁鐵：被磁力往上吸（浮起、釣起、吊起） */
+.apply-card[data-anim="lift"].is-on .anim { transform: translateY(-16px); }
+
+/* 喇叭：聲波由喇叭口「向外」一波波擴散 */
+.apply-card[data-anim="wave"] .anim { opacity: 0; }
+.apply-card[data-anim="wave"].is-on .anim { animation: wave-out 1s ease-out infinite; }
+@keyframes wave-out {
+  0%   { opacity: 0; transform: translateX(-6px); }
+  40%  { opacity: 1; }
+  100% { opacity: 0; transform: translateX(10px); }
+}
+
+/* 磁性白板：磁釦從旁邊被吸附到白板上 */
+.apply-card[data-anim="stick-on"] .anim { opacity: 0; transform: translateX(-46px); }
+.apply-card[data-anim="stick-on"].is-on .anim { opacity: 1; transform: translateX(0); }
 
 @media (prefers-reduced-motion: reduce) {
   .panel.is-active,
   .clip-fly, .flux path, .rub-mag,
   .domain line, .apply-card .anim { animation: none !important; transition: none !important; }
+  /* 關閉動畫時，確保預設藏起來的元素仍然看得見 */
+  .apply-card[data-anim="rotate"] .anim { transform: none; }
+  .apply-card[data-anim="wave"] .anim,
+  .apply-card[data-anim="stick-on"] .anim { opacity: 1; transform: none; }
 }
