@@ -1,10 +1,11 @@
 :root {
-  --color-bg: #f7faf7;
+  --color-bg: #f4f7fb;
   --color-surface: #ffffff;
-  --color-primary: #2e7d57;
-  --color-primary-dark: #1f5a3d;
-  --color-text: #243027;
-  --color-muted: #5d6b62;
+  --color-primary: #e63946;        /* N 極紅 */
+  --color-primary-dark: #b5232f;
+  --color-accent: #1d6fb8;         /* S 極藍 */
+  --color-text: #243038;
+  --color-muted: #5d6770;
   --radius: 12px;
   --shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
   --max-width: 960px;

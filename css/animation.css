@@ -14,42 +14,51 @@
 .scene figcaption { color: var(--color-muted); font-size: 0.85rem; margin-top: 0.4rem; }
 .scene-text { flex: 1 1 240px; }
 
-/* 1. 學習任務：目標環脈動 */
-.ring { fill: none; stroke: var(--color-primary); stroke-width: 3; opacity: 0.5; transform-origin: center; }
-.ring-1 { animation: pulse 2.4s ease-in-out infinite; }
-.ring-2 { animation: pulse 2.4s ease-in-out 0.4s infinite; }
-.ring-3 { animation: pulse 2.4s ease-in-out 0.8s infinite; }
-.bullseye { fill: var(--color-primary-dark); }
-@keyframes pulse {
-  0%, 100% { transform: scale(1); opacity: 0.35; }
-  50%      { transform: scale(1.08); opacity: 0.7; }
+/* 1. 學習任務：迴紋針被磁鐵一吸一放 */
+.clip-fly { transform-origin: center; animation: clip-attract 2.4s ease-in-out infinite; }
+@keyframes clip-attract {
+  0%, 100% { transform: translateX(0); }
+  50%      { transform: translateX(-26px); }
 }
 
-/* 2. 原理探索：衛星繞行 */
-.core { fill: var(--color-primary-dark); }
-.orbit { transform-origin: 60px 60px; animation: orbit 6s linear infinite; }
-.satellite { fill: var(--color-primary); }
-@keyframes orbit { to { transform: rotate(360deg); } }
+/* 2. 原理探索：磁力線流動（虛線循環） */
+.flux path { stroke-dasharray: 5 4; animation: flux-flow 1.6s linear infinite; }
+.flux path:nth-child(2) { animation-duration: 2s; }
+.flux path:nth-child(4) { animation-duration: 2s; }
+@keyframes flux-flow { to { stroke-dashoffset: -18; } }
 
-/* 3. 互動實驗：由 JS 即時控制，無需 keyframe，僅過場 */
-.ground { fill: #c9b79c; }
-.demo-bar { fill: var(--color-primary); transition: y 0.3s ease, height 0.3s ease, fill 0.3s ease; }
-.level-line { stroke: #3a7bd5; stroke-width: 2; stroke-dasharray: 4 3; transition: y1 0.3s ease, y2 0.3s ease; }
+/* 3. 互動實驗：迴紋針位置與吸力條由 JS 控制，僅加過場 */
+#demo-clip { transition: x 0.25s ease; }
+#demo-force { transition: width 0.25s ease, fill 0.25s ease; }
 
-/* 4. 動畫模擬：分階段（用 data-stage 切換，不全部同時動） */
-.plate { fill: #8d6e63; transition: transform 0.8s ease-in-out; }
-.uplift { fill: var(--color-primary-dark); opacity: 0; transition: opacity 0.6s ease 0.6s; }
-#sim-scene[data-stage="1"] .plate-left  { transform: translateX(12px); }
-#sim-scene[data-stage="1"] .plate-right { transform: translateX(-12px); }
-#sim-scene[data-stage="2"] .plate-left  { transform: translateX(12px); }
-#sim-scene[data-stage="2"] .plate-right { transform: translateX(-12px); }
-#sim-scene[data-stage="2"] .uplift { opacity: 1; }
+/* 4. 動畫模擬：鐵釘磁化三階段（用 data-stage 切換） */
+.domain line { stroke: #7a8794; stroke-width: 3; transform-box: fill-box; transform-origin: center; transition: transform 0.6s ease, stroke 0.6s ease; }
+/* 階段 0：方向亂（各自不同角度） */
+#sim-scene[data-stage="0"] .domain line:nth-child(1) { transform: rotate(70deg); }
+#sim-scene[data-stage="0"] .domain line:nth-child(2) { transform: rotate(-40deg); }
+#sim-scene[data-stage="0"] .domain line:nth-child(3) { transform: rotate(120deg); }
+#sim-scene[data-stage="0"] .domain line:nth-child(4) { transform: rotate(-80deg); }
+#sim-scene[data-stage="0"] .domain line:nth-child(5) { transform: rotate(30deg); }
+/* 階段 1：部分排好 */
+#sim-scene[data-stage="1"] .domain line:nth-child(2) { transform: rotate(-15deg); }
+#sim-scene[data-stage="1"] .domain line:nth-child(4) { transform: rotate(20deg); }
+#sim-scene[data-stage="1"] .domain line:nth-child(3) { transform: rotate(60deg); }
+/* 階段 2：全部排好（水平），變紅表示磁化完成 */
+#sim-scene[data-stage="2"] .domain line { transform: rotate(0deg); stroke: var(--color-primary); }
+/* 摩擦磁鐵：階段 1 出現並左右滑動 */
+.rub-mag { opacity: 0; transition: opacity 0.4s ease; }
+#sim-scene[data-stage="1"] .rub-mag { opacity: 1; animation: rub-move 1.2s ease-in-out infinite; }
+@keyframes rub-move { 0%,100% { transform: translateX(-44px); } 50% { transform: translateX(44px); } }
+/* 被吸住的迴紋針：階段 2 出現 */
+.clip-result { opacity: 0; transition: opacity 0.5s ease 0.3s; }
+#sim-scene[data-stage="2"] .clip-result { opacity: 1; }
 
 /* 5. 生活應用卡片：點按切換 before/after */
-.apply-card .anim { transition: transform 0.6s ease-in-out, opacity 0.6s ease; }
-.apply-card.is-on .anim { transform: translateY(6px) scale(1.04); }
+.apply-card .anim { transition: transform 0.6s ease-in-out, opacity 0.6s ease; transform-box: fill-box; transform-origin: center; }
+.apply-card.is-on .anim { transform: translateX(-22px); }
 
 @media (prefers-reduced-motion: reduce) {
   .panel.is-active,
-  .ring, .orbit, .apply-card .anim { animation: none !important; transition: none !important; }
+  .clip-fly, .flux path, .rub-mag,
+  .domain line, .apply-card .anim { animation: none !important; transition: none !important; }
 }

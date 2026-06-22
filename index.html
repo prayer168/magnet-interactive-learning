@@ -25,77 +25,120 @@
   </nav>
 
   <main>
-    <!-- 1. 學習任務：會脈動的目標圖示 -->
+    <!-- 1. 學習任務：磁鐵吸力示意（迴紋針被吸向磁鐵） -->
     <section class="panel is-active" id="mission" role="tabpanel">
       <h2>學習任務</h2>
       <div class="scene-row">
         <figure class="scene">
-          <svg viewBox="0 0 120 120" role="img" aria-label="學習目標">
-            <circle class="ring ring-3" cx="60" cy="60" r="46" />
-            <circle class="ring ring-2" cx="60" cy="60" r="32" />
-            <circle class="ring ring-1" cx="60" cy="60" r="18" />
-            <circle class="bullseye" cx="60" cy="60" r="7" />
+          <svg viewBox="0 0 120 120" role="img" aria-label="磁鐵吸住迴紋針">
+            <!-- 條形磁鐵 N(紅)/S(藍) -->
+            <rect x="14" y="50" width="34" height="20" rx="3" fill="#e63946" />
+            <rect x="48" y="50" width="34" height="20" rx="3" fill="#1d6fb8" />
+            <text x="31" y="64" font-size="12" fill="#fff" text-anchor="middle" font-weight="bold">N</text>
+            <text x="65" y="64" font-size="12" fill="#fff" text-anchor="middle" font-weight="bold">S</text>
+            <!-- 被吸引而靠近的迴紋針 -->
+            <g class="clip-fly">
+              <rect x="96" y="54" width="14" height="12" rx="6" fill="none" stroke="#7a8794" stroke-width="3" />
+            </g>
           </svg>
-          <figcaption>本單元的核心目標</figcaption>
+          <figcaption>磁鐵能隔空吸住迴紋針</figcaption>
         </figure>
         <div class="scene-text">
-          <p>在這裡建立本單元的核心提問，引導學生帶著問題進入學習。</p>
+          <p>磁鐵到處都有：冰箱、書包扣、玩具裡都有它。這個單元我們要帶著三個問題去探險：</p>
           <ul>
-            <li>核心問題一（待補）</li>
-            <li>核心問題二（待補）</li>
+            <li><strong>磁力的探討：</strong>磁鐵會吸住哪些東西？磁力能傳多遠、能穿過東西嗎？</li>
+            <li><strong>磁鐵的特性：</strong>磁鐵的哪裡吸力最強？兩塊磁鐵靠近會怎樣？為什麼能指方向？</li>
+            <li><strong>磁鐵與生活：</strong>指南針、馬達、磁浮列車……磁鐵怎麼幫我們的忙？</li>
           </ul>
         </div>
       </div>
     </section>
 
-    <!-- 2. 原理探索：繞行的概念示意 -->
+    <!-- 2. 原理探索：磁極與磁力線 -->
     <section class="panel" id="explore" role="tabpanel">
       <h2>原理探索</h2>
       <div class="scene-row">
         <figure class="scene">
-          <svg viewBox="0 0 120 120" role="img" aria-label="概念示意">
-            <circle class="core" cx="60" cy="60" r="16" />
-            <g class="orbit">
-              <circle class="satellite" cx="60" cy="18" r="6" />
+          <svg viewBox="0 0 140 120" role="img" aria-label="磁鐵的磁極與磁力線">
+            <!-- 磁力線：由 N 出發繞到 S，循環流動 -->
+            <g class="flux" fill="none" stroke="#9aa7b4" stroke-width="2">
+              <path d="M48 60 C48 18 92 18 92 60" />
+              <path d="M44 62 C40 8 100 8 96 62" opacity="0.7" />
+              <path d="M48 60 C48 102 92 102 92 60" />
+              <path d="M44 58 C40 112 100 112 96 58" opacity="0.7" />
             </g>
+            <!-- 條形磁鐵 -->
+            <rect x="34" y="50" width="36" height="20" rx="3" fill="#e63946" />
+            <rect x="70" y="50" width="36" height="20" rx="3" fill="#1d6fb8" />
+            <text x="52" y="64" font-size="12" fill="#fff" text-anchor="middle" font-weight="bold">N</text>
+            <text x="88" y="64" font-size="12" fill="#fff" text-anchor="middle" font-weight="bold">S</text>
           </svg>
-          <figcaption>概念之間的關係（示範動畫）</figcaption>
+          <figcaption>磁力線從 N 極出發、回到 S 極</figcaption>
         </figure>
         <div class="scene-text">
-          <p>用 SVG 圖解說明原理。把每個概念配一張會動的圖，文字寫在圖旁。</p>
+          <p>每個磁鐵都有 <strong style="color:#e63946">N 極（指北）</strong>和 <strong style="color:#1d6fb8">S 極（指南）</strong>兩個磁極，而且<strong>不管把磁鐵切成幾段，每一段又都會有 N、S 兩極</strong>。</p>
+          <p>磁鐵周圍看不見的磁力，可以用「磁力線」想像：它從 N 極跑出來、繞一圈回到 S 極。磁力線越密的地方磁力越強——所以<strong>兩端（磁極）磁力最強，中間最弱</strong>。</p>
         </div>
       </div>
     </section>
 
-    <!-- 3. 互動實驗：滑桿驅動的可操作動畫 -->
+    <!-- 3. 互動實驗：距離與磁力（滑桿驅動） -->
     <section class="panel" id="interact" role="tabpanel">
-      <h2>互動實驗</h2>
-      <p>拖動滑桿，觀察變化。互動要對應一個看得到的結果。</p>
+      <h2>互動實驗：磁力會隨距離改變嗎？</h2>
+      <p>拖動滑桿改變磁鐵和迴紋針的距離，看看迴紋針會不會被吸過去、吸力有多強。</p>
       <figure class="scene scene-wide">
-        <svg viewBox="0 0 200 120" role="img" aria-label="互動示範">
-          <rect x="0" y="90" width="200" height="30" class="ground" />
-          <rect id="demo-bar" x="20" y="40" width="30" height="50" class="demo-bar" />
-          <line id="demo-level" x1="0" y1="60" x2="200" y2="60" class="level-line" />
+        <svg viewBox="0 0 200 110" role="img" aria-label="磁鐵與迴紋針的距離">
+          <!-- 桌面 -->
+          <rect x="0" y="78" width="200" height="10" fill="#d7c3a5" />
+          <!-- 條形磁鐵 -->
+          <rect x="14" y="52" width="22" height="22" rx="3" fill="#e63946" />
+          <rect x="36" y="52" width="22" height="22" rx="3" fill="#1d6fb8" />
+          <text x="25" y="67" font-size="9" fill="#fff" text-anchor="middle" font-weight="bold">N</text>
+          <text x="47" y="67" font-size="9" fill="#fff" text-anchor="middle" font-weight="bold">S</text>
+          <!-- 迴紋針（位置與吸力由 JS 控制） -->
+          <rect id="demo-clip" x="150" y="56" width="16" height="14" rx="7" fill="none" stroke="#7a8794" stroke-width="3" />
+          <!-- 吸力強度條 -->
+          <rect x="92" y="92" width="100" height="8" rx="4" fill="#e6ebf1" />
+          <rect id="demo-force" x="92" y="92" width="50" height="8" rx="4" fill="#e63946" />
         </svg>
-        <figcaption>數值：<span id="demo-readout">50</span></figcaption>
+        <figcaption>距離：<span id="demo-readout">中</span>　吸力：<span id="demo-strength">中等</span></figcaption>
       </figure>
       <label class="control">
-        程度
-        <input id="demo-slider" type="range" min="0" max="100" value="50" />
+        磁鐵與迴紋針的距離（左＝近、右＝遠）
+        <input id="demo-slider" type="range" min="0" max="100" value="40" />
       </label>
+      <p class="eyebrow" style="margin-top:1rem">發現</p>
+      <p>距離越近，吸力越強，迴紋針會被吸過去；距離越遠，吸力越弱，最後就吸不到了。</p>
     </section>
 
-    <!-- 4. 動畫模擬：分階段播放 -->
+    <!-- 4. 動畫模擬：鐵釘被磁化的過程（分階段） -->
     <section class="panel" id="animation" role="tabpanel">
-      <h2>動畫模擬</h2>
-      <p>分階段切換的模擬，按「播放」一步步演示過程。</p>
+      <h2>動畫模擬：鐵釘怎麼變成磁鐵？</h2>
+      <p>用磁鐵朝同一個方向摩擦鐵釘，鐵釘裡原本亂七八糟的小磁針會排好隊，鐵釘就暫時變成磁鐵了。按「播放」一步步看。</p>
       <figure class="scene scene-wide" id="sim-scene" data-stage="0">
-        <svg viewBox="0 0 200 120" role="img" aria-label="過程模擬">
-          <rect class="plate plate-left" x="10" y="60" width="80" height="24" rx="3" />
-          <rect class="plate plate-right" x="110" y="60" width="80" height="24" rx="3" />
-          <polygon class="uplift" points="90,60 110,60 100,38" />
+        <svg viewBox="0 0 200 120" role="img" aria-label="鐵釘磁化過程">
+          <!-- 鐵釘外框 -->
+          <rect x="20" y="46" width="150" height="28" rx="6" fill="#e9edf2" stroke="#b9c3cd" stroke-width="2" />
+          <polygon points="170,46 190,60 170,74" fill="#cfd8e0" />
+          <!-- 內部小磁針（磁區），由 stage 控制方向 -->
+          <g class="domain">
+            <line x1="40"  y1="60" x2="52"  y2="60" />
+            <line x1="66"  y1="60" x2="78"  y2="60" />
+            <line x1="92"  y1="60" x2="104" y2="60" />
+            <line x1="118" y1="60" x2="130" y2="60" />
+            <line x1="144" y1="60" x2="156" y2="60" />
+          </g>
+          <!-- 摩擦用的磁鐵（stage 1 出現） -->
+          <g class="rub-mag">
+            <rect x="80" y="20" width="20" height="14" rx="2" fill="#e63946" />
+            <rect x="100" y="20" width="20" height="14" rx="2" fill="#1d6fb8" />
+          </g>
+          <!-- 被吸住的迴紋針（stage 2 出現） -->
+          <g class="clip-result">
+            <rect x="184" y="54" width="12" height="11" rx="5" fill="none" stroke="#7a8794" stroke-width="3" />
+          </g>
         </svg>
-        <figcaption id="sim-caption">階段 1：起始狀態</figcaption>
+        <figcaption id="sim-caption">階段 1：普通鐵釘，裡面的小磁針方向亂亂的，不能吸東西</figcaption>
       </figure>
       <button id="sim-play" class="btn">播放下一階段</button>
     </section>

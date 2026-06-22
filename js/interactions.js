@@ -1,32 +1,54 @@
 // 互動實驗、動畫模擬、生活應用卡片與自學資源的互動邏輯。
 
 export function initInteractions() {
-  // 3. 互動實驗：滑桿即時驅動 SVG。
+  // 3. 互動實驗：滑桿控制磁鐵與迴紋針的距離，即時反映吸力強弱。
   const slider = document.getElementById("demo-slider");
-  const bar = document.getElementById("demo-bar");
-  const level = document.getElementById("demo-level");
+  const clip = document.getElementById("demo-clip");
+  const force = document.getElementById("demo-force");
   const readout = document.getElementById("demo-readout");
-  if (slider && bar && level && readout) {
+  const strength = document.getElementById("demo-strength");
+  if (slider && clip && force && readout && strength) {
     const update = () => {
-      const v = Number(slider.value);
-      const h = 10 + v * 0.7;          // 條高隨數值變化
-      bar.setAttribute("y", 90 - h);
-      bar.setAttribute("height", h);
-      const y = 90 - h;                // 水位線跟著條頂
-      level.setAttribute("y1", y);
-      level.setAttribute("y2", y);
-      readout.textContent = v;
+      const v = Number(slider.value);          // 0=最近、100=最遠
+      // 迴紋針位置：近時靠向磁鐵（被吸過去），遠時在右側
+      const baseX = 58;                         // 磁鐵右緣附近
+      const farX = 150;
+      const clipX = baseX + (farX - baseX) * (v / 100);
+      clip.setAttribute("x", String(clipX));
+      // 吸力與距離成反比（簡化示意）：近強遠弱
+      const power = Math.round(100 * (1 - v / 100) ** 2); // 0~100
+      const barW = Math.max(2, power);          // 強度條寬度
+      force.setAttribute("width", String(barW));
+      // 文字回饋
+      readout.textContent = v < 33 ? "近" : v < 67 ? "中" : "遠";
+      if (power >= 60) {
+        strength.textContent = "很強，會被吸過去";
+        force.setAttribute("fill", "#e63946");
+      } else if (power >= 25) {
+        strength.textContent = "中等";
+        force.setAttribute("fill", "#f4a259");
+      } else if (power > 5) {
+        strength.textContent = "很弱";
+        force.setAttribute("fill", "#9aa7b4");
+      } else {
+        strength.textContent = "吸不到了";
+        force.setAttribute("fill", "#cfd6dd");
+      }
     };
     slider.addEventListener("input", update);
     update();
   }
 
-  // 4. 動畫模擬：分階段切換，不讓所有元素同時動。
+  // 4. 動畫模擬：鐵釘磁化三階段，不讓所有元素同時動。
   const scene = document.getElementById("sim-scene");
   const play = document.getElementById("sim-play");
   const caption = document.getElementById("sim-caption");
   if (scene && play && caption) {
-    const stages = ["階段 1：起始狀態", "階段 2：板塊互相推擠", "階段 3：地表被抬升"];
+    const stages = [
+      "階段 1：普通鐵釘，裡面的小磁針方向亂亂的，不能吸東西",
+      "階段 2：用磁鐵朝同一方向摩擦鐵釘，小磁針慢慢排好隊",
+      "階段 3：小磁針都排好了，鐵釘變成磁鐵，能吸住迴紋針了！",
+    ];
     play.addEventListener("click", () => {
       const next = (Number(scene.dataset.stage) + 1) % stages.length;
       scene.dataset.stage = String(next);

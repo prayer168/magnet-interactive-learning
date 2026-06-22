@@ -2,27 +2,50 @@
   "title": "磁鐵的祕密 自學資源",
   "media": [
     {
-      "title": "（範例影音）教學影片標題",
-      "type": "video",
-      "url": "https://example.com",
-      "source": "（待補來源機構，例：公視／國教院／科學館）",
+      "title": "認識磁鐵能吸鐵製品",
+      "type": "教學影片",
+      "url": "https://www.learnmode.net/flip/video/5869",
+      "source": "教育部因材網（LearnMode 學習吧）",
       "grade": "三年級",
       "checkedDate": "2026-06-22"
     },
     {
-      "title": "（範例影音）延伸聆聽／互動網站",
-      "type": "website",
-      "url": "https://example.com",
-      "source": "（待補來源機構）",
+      "title": "磁鐵的 S 極和 N 極（相吸與相斥）",
+      "type": "教學影片",
+      "url": "https://www.learnmode.net/flip/video/5221",
+      "source": "教育部因材網（LearnMode 學習吧）",
+      "grade": "三年級",
+      "checkedDate": "2026-06-22"
+    },
+    {
+      "title": "磁鐵在水中的指向",
+      "type": "教學影片",
+      "url": "https://www.learnmode.net/flip/video/5871",
+      "source": "教育部因材網（LearnMode 學習吧）",
+      "grade": "三年級",
+      "checkedDate": "2026-06-22"
+    },
+    {
+      "title": "使用磁鐵的生活用品",
+      "type": "教學影片",
+      "url": "https://www.learnmode.net/flip/video/5910",
+      "source": "教育部因材網（LearnMode 學習吧）",
       "grade": "三年級",
       "checkedDate": "2026-06-22"
     }
   ],
   "resources": [
     {
-      "name": "（範例資源）資源名稱",
-      "url": "https://example.com",
-      "type": "政府／科學館／研究機構",
+      "name": "磁鐵與電磁鐵 互動模擬（可拉動磁鐵、看磁力線與指南針）",
+      "url": "https://phet.colorado.edu/zh_TW/simulations/magnets-and-electromagnets",
+      "type": "互動模擬（PhET，美國科羅拉多大學）",
+      "grade": "三年級",
+      "checkedDate": "2026-06-22"
+    },
+    {
+      "name": "磁鐵的性質（觀念講解影片）",
+      "url": "https://www.junyiacademy.org/junyi-science/middle-school-physics-chemistry/s4zdt-/v/9O-u1MI5NUA",
+      "type": "教學影片（均一教育平台，需登入）",
       "grade": "三年級",
       "checkedDate": "2026-06-22"
     }
