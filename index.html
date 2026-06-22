@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>磁鐵的祕密</title>
+  <link rel="stylesheet" href="./css/style.css" />
+  <link rel="stylesheet" href="./css/animation.css" />
+  <link rel="stylesheet" href="./css/responsive.css" />
+</head>
+<body>
+  <header class="site-header">
+    <h1>磁鐵的祕密</h1>
+    <p class="subtitle">國小三年級 · 自然科學 · 40分鐘</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="教材段落">
+    <button class="tab is-active" data-tab="mission" role="tab">學習任務</button>
+    <button class="tab" data-tab="explore" role="tab">原理探索</button>
+    <button class="tab" data-tab="interact" role="tab">互動實驗</button>
+    <button class="tab" data-tab="animation" role="tab">動畫模擬</button>
+    <button class="tab" data-tab="apply" role="tab">生活應用</button>
+    <button class="tab" data-tab="quiz" role="tab">闖關大挑戰</button>
+    <button class="tab" data-tab="resources" role="tab">自學資源</button>
+  </nav>
+
+  <main>
+    <!-- 1. 學習任務：會脈動的目標圖示 -->
+    <section class="panel is-active" id="mission" role="tabpanel">
+      <h2>學習任務</h2>
+      <div class="scene-row">
+        <figure class="scene">
+          <svg viewBox="0 0 120 120" role="img" aria-label="學習目標">
+            <circle class="ring ring-3" cx="60" cy="60" r="46" />
+            <circle class="ring ring-2" cx="60" cy="60" r="32" />
+            <circle class="ring ring-1" cx="60" cy="60" r="18" />
+            <circle class="bullseye" cx="60" cy="60" r="7" />
+          </svg>
+          <figcaption>本單元的核心目標</figcaption>
+        </figure>
+        <div class="scene-text">
+          <p>在這裡建立本單元的核心提問，引導學生帶著問題進入學習。</p>
+          <ul>
+            <li>核心問題一（待補）</li>
+            <li>核心問題二（待補）</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. 原理探索：繞行的概念示意 -->
+    <section class="panel" id="explore" role="tabpanel">
+      <h2>原理探索</h2>
+      <div class="scene-row">
+        <figure class="scene">
+          <svg viewBox="0 0 120 120" role="img" aria-label="概念示意">
+            <circle class="core" cx="60" cy="60" r="16" />
+            <g class="orbit">
+              <circle class="satellite" cx="60" cy="18" r="6" />
+            </g>
+          </svg>
+          <figcaption>概念之間的關係（示範動畫）</figcaption>
+        </figure>
+        <div class="scene-text">
+          <p>用 SVG 圖解說明原理。把每個概念配一張會動的圖，文字寫在圖旁。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. 互動實驗：滑桿驅動的可操作動畫 -->
+    <section class="panel" id="interact" role="tabpanel">
+      <h2>互動實驗</h2>
+      <p>拖動滑桿，觀察變化。互動要對應一個看得到的結果。</p>
+      <figure class="scene scene-wide">
+        <svg viewBox="0 0 200 120" role="img" aria-label="互動示範">
+          <rect x="0" y="90" width="200" height="30" class="ground" />
+          <rect id="demo-bar" x="20" y="40" width="30" height="50" class="demo-bar" />
+          <line id="demo-level" x1="0" y1="60" x2="200" y2="60" class="level-line" />
+        </svg>
+        <figcaption>數值：<span id="demo-readout">50</span></figcaption>
+      </figure>
+      <label class="control">
+        程度
+        <input id="demo-slider" type="range" min="0" max="100" value="50" />
+      </label>
+    </section>
+
+    <!-- 4. 動畫模擬：分階段播放 -->
+    <section class="panel" id="animation" role="tabpanel">
+      <h2>動畫模擬</h2>
+      <p>分階段切換的模擬，按「播放」一步步演示過程。</p>
+      <figure class="scene scene-wide" id="sim-scene" data-stage="0">
+        <svg viewBox="0 0 200 120" role="img" aria-label="過程模擬">
+          <rect class="plate plate-left" x="10" y="60" width="80" height="24" rx="3" />
+          <rect class="plate plate-right" x="110" y="60" width="80" height="24" rx="3" />
+          <polygon class="uplift" points="90,60 110,60 100,38" />
+        </svg>
+        <figcaption id="sim-caption">階段 1：起始狀態</figcaption>
+      </figure>
+      <button id="sim-play" class="btn">播放下一階段</button>
+    </section>
+
+    <!-- 5. 生活應用：6～8 則互動卡片（由 JS 渲染） -->
+    <section class="panel" id="apply" role="tabpanel">
+      <p class="eyebrow">動手點點看</p>
+      <h2>生活應用</h2>
+      <p>把概念連到日常情境。每張卡片都能點按操作，觀察前後變化。</p>
+      <div id="apply-root" class="card-grid"></div>
+    </section>
+
+    <!-- 6. 闖關大挑戰 -->
+    <section class="panel" id="quiz" role="tabpanel">
+      <p class="eyebrow">即時回饋</p>
+      <h2>闖關大挑戰</h2>
+      <div id="quiz-root"></div>
+    </section>
+
+    <!-- 7. 自學資源：影音教材 + 延伸連結（由 JS 渲染，含來源） -->
+    <section class="panel" id="resources" role="tabpanel">
+      <p class="eyebrow">延伸學習</p>
+      <h2>自學資源</h2>
+      <h3>影音教材</h3>
+      <div id="media-root" class="card-grid"></div>
+      <h3>延伸資源</h3>
+      <div id="resources-root"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>v1.0.0 · 教材內容採 CC BY-NC-SA 4.0 授權</p>
+  </footer>
+
+  <script type="module" src="./js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+{
+  "title": "磁鐵的祕密 自學資源",
+  "media": [
+    {
+      "title": "（範例影音）教學影片標題",
+      "type": "video",
+      "url": "https://example.com",
+      "source": "（待補來源機構，例：公視／國教院／科學館）",
+      "grade": "三年級",
+      "checkedDate": "2026-06-22"
+    },
+    {
+      "title": "（範例影音）延伸聆聽／互動網站",
+      "type": "website",
+      "url": "https://example.com",
+      "source": "（待補來源機構）",
+      "grade": "三年級",
+      "checkedDate": "2026-06-22"
+    }
+  ],
+  "resources": [
+    {
+      "name": "（範例資源）資源名稱",
+      "url": "https://example.com",
+      "type": "政府／科學館／研究機構",
+      "grade": "三年級",
+      "checkedDate": "2026-06-22"
+    }
+  ]
+}

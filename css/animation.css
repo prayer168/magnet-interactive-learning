@@ -1,0 +1,55 @@
+/* 動畫與過場。原則：分階段切換、文字與動態圖分區、尊重 reduced-motion。 */
+
+.panel.is-active { animation: panel-fade 0.35s ease; }
+@keyframes panel-fade {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* 場景容器：動態圖與文字分區 */
+.scene-row { display: flex; gap: 1.2rem; align-items: center; flex-wrap: wrap; }
+.scene { margin: 0; text-align: center; }
+.scene svg { width: 160px; height: 160px; }
+.scene-wide svg { width: 100%; max-width: 360px; height: auto; }
+.scene figcaption { color: var(--color-muted); font-size: 0.85rem; margin-top: 0.4rem; }
+.scene-text { flex: 1 1 240px; }
+
+/* 1. 學習任務：目標環脈動 */
+.ring { fill: none; stroke: var(--color-primary); stroke-width: 3; opacity: 0.5; transform-origin: center; }
+.ring-1 { animation: pulse 2.4s ease-in-out infinite; }
+.ring-2 { animation: pulse 2.4s ease-in-out 0.4s infinite; }
+.ring-3 { animation: pulse 2.4s ease-in-out 0.8s infinite; }
+.bullseye { fill: var(--color-primary-dark); }
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 0.35; }
+  50%      { transform: scale(1.08); opacity: 0.7; }
+}
+
+/* 2. 原理探索：衛星繞行 */
+.core { fill: var(--color-primary-dark); }
+.orbit { transform-origin: 60px 60px; animation: orbit 6s linear infinite; }
+.satellite { fill: var(--color-primary); }
+@keyframes orbit { to { transform: rotate(360deg); } }
+
+/* 3. 互動實驗：由 JS 即時控制，無需 keyframe，僅過場 */
+.ground { fill: #c9b79c; }
+.demo-bar { fill: var(--color-primary); transition: y 0.3s ease, height 0.3s ease, fill 0.3s ease; }
+.level-line { stroke: #3a7bd5; stroke-width: 2; stroke-dasharray: 4 3; transition: y1 0.3s ease, y2 0.3s ease; }
+
+/* 4. 動畫模擬：分階段（用 data-stage 切換，不全部同時動） */
+.plate { fill: #8d6e63; transition: transform 0.8s ease-in-out; }
+.uplift { fill: var(--color-primary-dark); opacity: 0; transition: opacity 0.6s ease 0.6s; }
+#sim-scene[data-stage="1"] .plate-left  { transform: translateX(12px); }
+#sim-scene[data-stage="1"] .plate-right { transform: translateX(-12px); }
+#sim-scene[data-stage="2"] .plate-left  { transform: translateX(12px); }
+#sim-scene[data-stage="2"] .plate-right { transform: translateX(-12px); }
+#sim-scene[data-stage="2"] .uplift { opacity: 1; }
+
+/* 5. 生活應用卡片：點按切換 before/after */
+.apply-card .anim { transition: transform 0.6s ease-in-out, opacity 0.6s ease; }
+.apply-card.is-on .anim { transform: translateY(6px) scale(1.04); }
+
+@media (prefers-reduced-motion: reduce) {
+  .panel.is-active,
+  .ring, .orbit, .apply-card .anim { animation: none !important; transition: none !important; }
+}

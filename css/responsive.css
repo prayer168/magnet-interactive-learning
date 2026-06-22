@@ -1,0 +1,12 @@
+/* RWD：適配電腦、平板與手機。 */
+
+@media (max-width: 768px) {
+  .site-header h1 { font-size: 1.5rem; }
+  .tab { padding: 0.5rem 0.8rem; font-size: 0.88rem; }
+  .panel { padding: 1.1rem 1.1rem; }
+}
+
+@media (max-width: 480px) {
+  .tabs { gap: 0.3rem; }
+  .tab { flex: 1 1 auto; text-align: center; }
+}

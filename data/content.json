@@ -1,0 +1,58 @@
+{
+  "title": "磁鐵的祕密",
+  "topics": ["磁力的探討", "磁鐵的特性", "磁鐵與生活"],
+  "sections": {
+    "mission": { "heading": "學習任務", "questions": [] },
+    "explore": { "heading": "原理探索", "blocks": [] },
+    "interact": { "heading": "互動實驗", "items": [] },
+    "animation": { "heading": "動畫模擬", "scenes": [] },
+    "apply": {
+      "heading": "生活應用",
+      "note": "範例為 6 則占位卡片，請依主題替換成真實情境，維持 6～8 則。每則的 svg 會被點按時加上 .is-on 觸發動畫；用到真實照片請改填 source。",
+      "cases": [
+        {
+          "title": "情境一（待補）",
+          "caption": "把概念連到一個日常情境，說明會發生什麼。",
+          "action": "點我看變化",
+          "svg": "<svg viewBox='0 0 120 60'><rect x='0' y='44' width='120' height='16' fill='#c9b79c'/><circle class='anim' cx='30' cy='34' r='10' fill='#2e7d57'/></svg>",
+          "source": ""
+        },
+        {
+          "title": "情境二（待補）",
+          "caption": "描述第二個生活應用。",
+          "action": "點我看變化",
+          "svg": "<svg viewBox='0 0 120 60'><rect x='0' y='44' width='120' height='16' fill='#c9b79c'/><polygon class='anim' points='20,44 50,44 35,20' fill='#1f5a3d'/></svg>",
+          "source": ""
+        },
+        {
+          "title": "情境三（待補）",
+          "caption": "描述第三個生活應用。",
+          "action": "點我看變化",
+          "svg": "<svg viewBox='0 0 120 60'><rect x='0' y='44' width='120' height='16' fill='#c9b79c'/><rect class='anim' x='40' y='24' width='30' height='20' fill='#2e7d57'/></svg>",
+          "source": ""
+        },
+        {
+          "title": "情境四（待補）",
+          "caption": "描述第四個生活應用。",
+          "action": "點我看變化",
+          "svg": "<svg viewBox='0 0 120 60'><rect x='0' y='44' width='120' height='16' fill='#c9b79c'/><circle class='anim' cx='80' cy='30' r='12' fill='#3a7bd5'/></svg>",
+          "source": ""
+        },
+        {
+          "title": "情境五（待補）",
+          "caption": "描述第五個生活應用。",
+          "action": "點我看變化",
+          "svg": "<svg viewBox='0 0 120 60'><rect x='0' y='44' width='120' height='16' fill='#c9b79c'/><path class='anim' d='M10,44 Q60,10 110,44' fill='none' stroke='#2e7d57' stroke-width='4'/></svg>",
+          "source": ""
+        },
+        {
+          "title": "情境六（待補）",
+          "caption": "描述第六個生活應用。",
+          "action": "點我看變化",
+          "svg": "<svg viewBox='0 0 120 60'><rect x='0' y='44' width='120' height='16' fill='#c9b79c'/><rect class='anim' x='20' y='14' width='14' height='30' fill='#1f5a3d'/><rect class='anim' x='86' y='14' width='14' height='30' fill='#1f5a3d'/></svg>",
+          "source": ""
+        }
+      ]
+    }
+  }
+}

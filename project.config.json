@@ -1,0 +1,17 @@
+{
+  "title": "磁鐵的祕密",
+  "projectName": "magnet-interactive-learning",
+  "repositoryName": "magnet-interactive-learning",
+  "level": "國小",
+  "grade": "三年級",
+  "subject": "自然科學",
+  "duration": "40分鐘",
+  "mode": "引導模式",
+  "style": "清爽、活潑、紅藍磁極對比",
+  "topics": ["磁力的探討", "磁鐵的特性", "磁鐵與生活"],
+  "audio": false,
+  "progressTracking": true,
+  "teacherGuide": true,
+  "version": "1.0.0",
+  "githubPages": "https://prayer168.github.io/magnet-interactive-learning/"
+}
